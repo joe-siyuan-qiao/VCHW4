@@ -17,7 +17,28 @@ The output of training and testing two convolutional layer network
 ```
 [in]: th CNNTrainer.lua -net 2
 [out]:
-
+| loading dataset
+| start training
+[test] | step 00050 | accuracy: 0.88400
+[test] | step 00100 | accuracy: 0.91900
+[test] | step 00150 | accuracy: 0.94500
+[test] | step 00200 | accuracy: 0.93800
+[test] | step 00250 | accuracy: 0.96500
+[test] | step 00300 | accuracy: 0.96500
+[test] | step 00350 | accuracy: 0.97200
+[test] | step 00400 | accuracy: 0.96700
+[test] | step 00450 | accuracy: 0.94800
+[test] | step 00500 | accuracy: 0.96600
+[test] | step 00550 | accuracy: 0.97000
+[test] | step 00600 | accuracy: 0.96500
+[test] | step 00650 | accuracy: 0.97100
+[test] | step 00700 | accuracy: 0.96700
+[test] | step 00750 | accuracy: 0.98200
+[test] | step 00800 | accuracy: 0.97900
+[test] | step 00850 | accuracy: 0.98400
+[test] | step 00900 | accuracy: 0.98000
+[test] | step 00950 | accuracy: 0.98200
+[test] | step 01000 | accuracy: 0.98600
 ```
 The output of training and testing one convolutional layer network
 ```
