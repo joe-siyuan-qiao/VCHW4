@@ -19,20 +19,40 @@ cmd:text()
 cmd:text('Options:')
 cmd:option('-numSteps', 1000, 'max number of training steps')
 cmd:option('-lr', 0.05, 'learning rate')
+cmd:option('-net', 2, 'the number of convolutional layers {0, 1, 2}')
 local config = cmd:parse(arg)
 
 --------------------------------------------------------------------------------
 -- initilize the convolutional neural network
-cnn = nn.Sequential()
-cnn:add(nn.SpatialConvolutionMM(1, 32, 5, 5))
-cnn:add(nn.ReLU())
-cnn:add(nn.SpatialMaxPooling(2, 2))
-cnn:add(nn.SpatialConvolutionMM(32, 64, 5, 5))
-cnn:add(nn.ReLU())
-cnn:add(nn.SpatialMaxPooling(2, 2))
-cnn:add(nn.Reshape(64 * 5 *5))
-cnn:add(nn.Linear(64 * 5 * 5, 10))
+
+-- two layer convolutional neural network
+twolayercnn = nn.Sequential()
+twolayercnn:add(nn.SpatialConvolutionMM(1, 32, 5, 5))
+twolayercnn:add(nn.ReLU())
+twolayercnn:add(nn.SpatialMaxPooling(2, 2))
+twolayercnn:add(nn.SpatialConvolutionMM(32, 64, 5, 5))
+twolayercnn:add(nn.ReLU())
+twolayercnn:add(nn.SpatialMaxPooling(2, 2))
+twolayercnn:add(nn.Reshape(64 * 5 * 5))
+twolayercnn:add(nn.Linear(64 * 5 * 5, 10))
+
+-- one layer convolutional neural network
+onelayercnn = nn.Sequential()
+onelayercnn:add(nn.SpatialConvolutionMM(1, 32, 5, 5))
+onelayercnn:add(nn.ReLU())
+onelayercnn:add(nn.SpatialMaxPooling(2, 2))
+onelayercnn:add(nn.Reshape(32 * 14 * 14))
+onelayercnn:add(nn.Linear(32 * 14 * 14, 10))
+
+-- linear classifier
+zerolayercnn = nn.Sequential()
+zerolayercnn:add(nn.Reshape(32 * 32))
+zerolayercnn:add(nn.Linear(32 * 32, 10))
+
+-- network setup and criteirion
 crit = nn.CrossEntropyCriterion()
+cnnTable = {zerolayercnn, onelayercnn, twolayercnn}
+cnn = cnnTable[config.net + 1]
 
 --------------------------------------------------------------------------------
 -- loading the training dataset
