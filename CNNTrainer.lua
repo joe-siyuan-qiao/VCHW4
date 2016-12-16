@@ -20,6 +20,7 @@ cmd:text('Options:')
 cmd:option('-numSteps', 1000, 'max number of training steps')
 cmd:option('-lr', 0.05, 'learning rate')
 cmd:option('-net', 2, 'the number of convolutional layers {0, 1, 2}')
+cmd:option('-testStep', 50, 'test the accuracy every testStep steps')
 local config = cmd:parse(arg)
 
 --------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ for i = 1, config.numSteps do
   cnn:backward(images, dScores)
   cnn:updateParameters(config.lr)
   cnn:zeroGradParameters()
-  if i % 100 == 0 then
+  if i % config.testStep == 0 then
     local preds = cnn:forward(testImages)
     print(string.format('[test] | step %05d | accuracy: %07.5f ', i,
         accuracy(preds, testLabels)))
