@@ -56,6 +56,7 @@ for i = 1, config.numSteps do
   if i % 100 == 0 then
     local preds = cnn:forward(testImages)
     print(string.format('[test] | step %05d | accuracy: %07.5f ', i,
-      accuracy(preds, testLabels)))
+        accuracy(preds, testLabels)))
   end
+  collectgarbage()
 end
