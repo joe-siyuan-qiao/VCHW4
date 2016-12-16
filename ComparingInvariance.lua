@@ -37,7 +37,7 @@ rightShifts = torch.load(paths.concat('data', 'translations', 'rightShifts.t7'))
 
 --------------------------------------------------------------------------------
 -- compute the score vectors
-vCenter = cnn:forward(center):clone()
+local vCenter = cnn:forward(center):clone()
 local vLeftShifts = torch.Tensor(5, 100, 10)
 local vRightShifts = torch.Tensor(5, 100, 10)
 for i = 1, 5 do vLeftShifts[i] = cnn:forward(leftShifts[i]):clone() end
