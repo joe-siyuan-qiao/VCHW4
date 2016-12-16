@@ -81,3 +81,8 @@ for i = 1, config.numSteps do
   end
   collectgarbage()
 end
+
+local modelDir = paths.concat('pretrained', string.format('model-net-%d.t7',
+    config.net))
+print('| save model to %s', modelDir)
+torch.save(modelDir, cnn)
