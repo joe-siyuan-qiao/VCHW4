@@ -85,4 +85,4 @@ end
 local modelDir = paths.concat('pretrained', string.format('model-net-%d.t7',
     config.net))
 print('| save model to ' .. modelDir)
-torch.save(modelDir, cnn)
+torch.save(modelDir, cnn:clone('weight', 'bias'))
