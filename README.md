@@ -122,3 +122,69 @@ gnuplot.plot({'Linear Classifier', x, y0, '-'}, {'One Convolutional Layer', x,
 The learning curves are shown as follows.
 
 ![The Learning Curve](learning_curve.png)
+
+Next we demonstrate how to use ComparingInvariance.lua to evaluate the pretrained networkds.
+```
+[in]: th ComparingInvariance.lua -help
+[out]: Comparing Invariance of the three trained networks
+
+Options:
+  -net the number of convolutional layers {0, 1, 2} [2]
+```
+We first evaluate the trained linear classifier
+```
+[in]: th ComparingInvariance.lua -net 0
+[out]:
+| loading model from /home/siyuan/Documents/Writing/Visual Cortex/VCHW4/pretrained/model-net-0.t7
+| loading the test dataset
+| average distance:
+| [1]   | 1.36899
+| [2]   | 1.23310
+| [3]   | 1.01327
+| [4]   | 0.72242
+| [5]   | 0.36792
+| [6]   | 0.00000
+| [7]   | 0.33592
+| [8]   | 0.62614
+| [9]   | 0.88062
+| [10]  | 1.10357
+| [11]  | 1.26769
+```
+Next we evaluate the one convolutional layer network
+```
+[in]: th ComparingInvariance.lua -net 1
+[out]:
+| loading model from /home/siyuan/Documents/Writing/Visual Cortex/VCHW4/pretrained/model-net-0.t7
+| loading the test dataset
+| average distance:
+| [1]   | 1.14268
+| [2]   | 0.95751
+| [3]   | 0.75228
+| [4]   | 0.53026
+| [5]   | 0.26268
+| [6]   | 0.00000
+| [7]   | 0.23673
+| [8]   | 0.43956
+| [9]   | 0.65670
+| [10]  | 0.87340
+| [11]  | 1.06983
+```
+Finally, we evaluate the two convolutional layer network
+```
+[in]: th ComparingInvariance.lua -net 2
+[out]:
+| loading model from /home/siyuan/Documents/Writing/Visual Cortex/VCHW4/pretrained/model-net-0.t7
+| loading the test dataset
+| average distance:
+| [1]   | 1.01600
+| [2]   | 0.83485
+| [3]   | 0.65654
+| [4]   | 0.45781
+| [5]   | 0.24308
+| [6]   | 0.00000
+| [7]   | 0.20050
+| [8]   | 0.37763
+| [9]   | 0.55655
+| [10]  | 0.73132
+| [11]  | 0.90802
+```
