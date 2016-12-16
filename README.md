@@ -96,6 +96,8 @@ The output of training and testing linear classifier
 ```
 To plot the learning curve
 ```lua
+require 'gnuplot'
+x = {}
 for i = 50, 1000, 50 do
     table.insert(x, i)
 end
@@ -112,6 +114,8 @@ x = torch.Tensor(x)
 y0 = torch.Tensor(y0)
 y1 = torch.Tensor(y1)
 y2 = torch.Tensor(y2)
+gnuplot.xlabel('Training Steps')
+gnuplot.ylabel('Test Accuracy')
 gnuplot.plot({'Linear Classifier', x, y0, '-'}, {'One Convolutional Layer', x,
     y1, '-'}, {'Two Convolutional Layers', x, y2, '-'})
 ```
